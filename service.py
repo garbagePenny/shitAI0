@@ -26,6 +26,10 @@ def postImg():
     print("Response received!")
     response_data = response.json()
     print(response_data)    
+
+    db = firebase.Firebase()
+    db.authenticate()
+    db.push(response_data)
             
 def main():
     while True:

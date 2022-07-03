@@ -2,6 +2,8 @@
 from flask import Flask, request, jsonify
 import classify
 import base64
+import firebase
+import env
 import json
 
 # Instantiate Flask
@@ -36,6 +38,11 @@ def detect():
 
     response_data = result
     print(response_data)
+
+    db = firebase.Firebase()
+    db.authenticate()
+    db.push(response_data)
+    print("Updated Firebase.")
 
     return result
 
