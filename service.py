@@ -19,7 +19,7 @@ def postImg():
     imageBytes = base64.b64encode(imageFile.read())
     print("Sending image to cloud server for analysis.")
     response = requests.post(
-		"http://174.138.58.241/detect",
+		"http://127.0.1.1:6969/detect",
 		data=imageBytes
 	)
 	
