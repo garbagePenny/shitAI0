@@ -3,8 +3,6 @@ from flask import Flask, request, jsonify
 import classify
 import base64
 import json
-import firebase
-import env
 
 # Instantiate Flask
 app = Flask(__name__)
@@ -28,22 +26,18 @@ def detect():
 
     print("successfully receieved image")
     
-    # Pass image bytes to classifier
-    result = classify.analyse("temp.png")
+    # Pass image bytes to classifier\
+    imgPath= "testing.png"
+    result = classify.analyse(imgPath)
 
     # Return results as neat JSON object, using 
     result = jsonify(result)
     print(result.json)
 
-    response_data = result.json
+    response_data = result
     print(response_data)
-    
-    db = firebase.Firebase()
-    db.authenticate()
-    db.push(response_data)
-    print("Updated Firebase.")
 
     return result
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='127.0.1.1', port=6969, debug=True)

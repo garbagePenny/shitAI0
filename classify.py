@@ -1,5 +1,4 @@
 import tensorflow as tf
-import sys
 import os
 
 # Disable tensorflow compilation warnings
@@ -7,7 +6,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
-imageObj = '/content/testing.png'
 def analyse(imageObj):
     # Read the image_data
     image_data = tf.gfile.FastGFile(imageObj, 'rb').read()
@@ -36,6 +34,4 @@ def analyse(imageObj):
             human_string = label_lines[node_id]
             score = predictions[0][node_id]
             obj[human_string] = float(score)
-        print(obj)
         return obj
-analyse(imageObj)
